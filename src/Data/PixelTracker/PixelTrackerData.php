@@ -4,8 +4,8 @@ namespace TautId\Tracker\Data\PixelTracker;
 
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
-use TautId\Tracker\Models\PixelTracker;
 use TautId\Tracker\Data\PixelEvent\PixelEventData;
+use TautId\Tracker\Models\PixelTracker;
 
 class PixelTrackerData extends Data
 {

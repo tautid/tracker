@@ -2,12 +2,12 @@
 
 namespace TautId\Tracker\Services;
 
-use TautId\Tracker\Models\PixelTracker;
-use TautId\Tracker\Events\ConversionCreateEvent;
-use TautId\Tracker\Enums\PixelConversionStatusEnums;
-use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
-use TautId\Tracker\Factories\PixelTrackerDriverFactory;
 use TautId\Tracker\Data\PixelTracker\CreatePixelTrackerData;
+use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
+use TautId\Tracker\Enums\PixelConversionStatusEnums;
+use TautId\Tracker\Events\ConversionCreateEvent;
+use TautId\Tracker\Factories\PixelTrackerDriverFactory;
+use TautId\Tracker\Models\PixelTracker;
 
 class PixelTrackerService
 {
