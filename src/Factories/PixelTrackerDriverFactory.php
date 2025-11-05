@@ -3,7 +3,6 @@
 namespace TautId\Tracker\Factories;
 
 use TautId\Tracker\Abstracts\PixelTrackerAbstract;
-use TautId\Tracker\Interfaces\PixelTrackerInterface;
 use TautId\Tracker\Factories\PixelTrackerDrivers\MetaDriver;
 
 class PixelTrackerDriverFactory

@@ -2,7 +2,6 @@
 
 namespace TautId\Tracker\Services;
 
-<<<<<<< HEAD
 use TautId\Tracker\Models\PixelEvent;
 use Spatie\LaravelData\DataCollection;
 use TautId\Tracker\Traits\FilterServiceTrait;
@@ -10,18 +9,7 @@ use Spatie\LaravelData\PaginatedDataCollection;
 use Illuminate\Database\RecordNotFoundException;
 use TautId\Tracker\Data\PixelEvent\PixelEventData;
 use TautId\Tracker\Data\Utility\FilterPaginationData;
-use TautId\Tracker\Factories\PixelTrackerDriverFactory;
 use TautId\Tracker\Data\PixelEvent\CreatePixelEventData;
-=======
-use Illuminate\Database\RecordNotFoundException;
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\PaginatedDataCollection;
-use Tautid\Tracker\Data\PixelEvent\CreatePixelEventData;
-use Tautid\Tracker\Data\PixelEvent\PixelEventData;
-use Tautid\Tracker\Data\Utility\FilterPaginationData;
-use Tautid\Tracker\Models\PixelEvent;
-use Tautid\Tracker\Traits\FilterServiceTrait;
->>>>>>> 9a8c86233e257ccf199186b3aa6d7bfe1c431e11
 
 class PixelEventService
 {
