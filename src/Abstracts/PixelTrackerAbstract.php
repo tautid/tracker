@@ -42,10 +42,6 @@ abstract class PixelTrackerAbstract
             throw new \InvalidArgumentException('Pixel data must be set before fetching. Call setPixel() first.');
         }
 
-        if ($this->conversion === null) {
-            throw new \InvalidArgumentException('Conversion must be set before fetching. ca');
-        }
-
         if ($this->data === null) {
             throw new \InvalidArgumentException('Data must be set before fetching. Call setData() first.');
         }

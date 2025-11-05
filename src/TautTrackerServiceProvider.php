@@ -20,12 +20,13 @@ class TautTrackerServiceProvider extends PackageServiceProvider
         $package
             ->name('taut-tracker')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_tracker_table');
+            ->hasViews();
     }
 
     public function boot()
     {
+        parent::boot();
+
         $existing = config('database.connections', []);
         $mongotrack = config('taut-tracker.connections', []);
 

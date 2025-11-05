@@ -17,7 +17,7 @@ class PixelTrackerService
 
         PixelTrackerDriverFactory::getDriver($pixel->driver)
             ->setPixel($pixel)
-            ->setData($data->data)
+            ->setData($data?->data ?? [])
             ->validateData();
 
         $meta = match ($pixel->driver) {
@@ -26,8 +26,7 @@ class PixelTrackerService
         };
 
         $record = PixelTracker::create([
-            'id' => uniqid(),
-            'event_id' => $pixel->id,
+            'pixel' => $pixel,
             'status' => PixelConversionStatusEnums::Queued->value,
             'is_saved' => false,
             'data' => $data->data,
@@ -39,7 +38,7 @@ class PixelTrackerService
 
         $result = PixelTrackerData::from($record);
 
-        event((new ConversionCreateEvent($result)));
+        // event((new ConversionCreateEvent($result)));
 
         return $result;
     }

@@ -125,6 +125,10 @@ class MetaDriver extends PixelTrackerAbstract
 
     public function fetch(): void
     {
+        if ($this->conversion === null) {
+            throw new \InvalidArgumentException('Conversion must be set before fetching.');
+        }
+
         $this->validateData();
 
         try {

@@ -50,12 +50,12 @@ class PixelEventService
     public function createPixelEvent(CreatePixelEventData $data): PixelEventData
     {
         $record = PixelEvent::create([
-            'id' => uniqid(),
             'reference_id' => $data->reference?->id ?? null,
             'reference_type' => ($data->reference) ? get_class($data->reference) : null,
             'name' => $data->name,
             'driver' => $data->driver,
             'event' => $data->event,
+            'pixel_id' => $data->pixel_id,
             'token' => $data->token,
         ]);
 
