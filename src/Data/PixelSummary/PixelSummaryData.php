@@ -17,10 +17,7 @@ class PixelSummaryData extends Data
         public Carbon $date,
         public Carbon $created_at,
         public Carbon $updated_at
-    )
-    {
-
-    }
+    ) {}
 
     public static function fromModel(PixelSummary $record): self
     {

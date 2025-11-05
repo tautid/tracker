@@ -21,10 +21,7 @@ class PixelTrackerData extends Data
         public ?array $meta,
         public Carbon $created_at,
         public Carbon $updated_at
-    )
-    {
-
-    }
+    ) {}
 
     public static function fromModel(PixelTracker $record): self
     {

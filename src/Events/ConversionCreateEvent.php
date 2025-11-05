@@ -2,20 +2,14 @@
 
 namespace TautId\Tracker\Events;
 
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
 
 class ConversionCreateEvent
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels, Queueable;
+    use Dispatchable, InteractsWithSockets, Queueable, SerializesModels;
 
     public function __construct(
         public PixelTrackerData $data
-    )
-    {
-
-    }
+    ) {}
 }

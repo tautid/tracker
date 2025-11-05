@@ -14,6 +14,6 @@ class PixelEvent extends Model
 
     protected $casts = [
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        'updated_at' => 'datetime',
     ];
 }

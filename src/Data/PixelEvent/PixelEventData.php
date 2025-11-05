@@ -19,10 +19,7 @@ class PixelEventData extends Data
         public string $token,
         public Carbon $created_at,
         public Carbon $updated_at
-    )
-    {
-
-    }
+    ) {}
 
     public static function fromModel(PixelEvent $record): self
     {
