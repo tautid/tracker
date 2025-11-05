@@ -4,8 +4,8 @@ namespace TautId\Tracker;
 
 use Illuminate\Support\Facades\Event;
 use Spatie\LaravelPackageTools\Package;
-use TautId\Tracker\Events\ConversionCreateEvent;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use TautId\Tracker\Events\ConversionCreateEvent;
 use TautId\Tracker\Listeners\ConversionCreateListener;
 
 class TautTrackerServiceProvider extends PackageServiceProvider

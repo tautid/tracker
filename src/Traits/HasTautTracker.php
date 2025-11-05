@@ -2,8 +2,8 @@
 
 namespace TautId\Tracker\Traits;
 
-use TautId\Tracker\Models\PixelEvent;
 use Illuminate\Support\Collection;
+use TautId\Tracker\Models\PixelEvent;
 
 trait HasTautTracker
 {

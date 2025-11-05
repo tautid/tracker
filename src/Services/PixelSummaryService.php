@@ -3,8 +3,8 @@
 namespace TautId\Tracker\Services;
 
 use Spatie\LaravelData\DataCollection;
-use TautId\Tracker\Models\PixelSummary;
 use TautId\Tracker\Data\PixelSummary\PixelSummaryData;
+use TautId\Tracker\Models\PixelSummary;
 
 class PixelSummaryService
 {
