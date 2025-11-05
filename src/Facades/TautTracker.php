@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \TautId\Tracker\Tracker
  */
-class Tracker extends Facade
+class TautTracker extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \TautId\Tracker\Tracker::class;
+        return \TautId\Tracker\TautTracker::class;
     }
 }

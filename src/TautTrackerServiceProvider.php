@@ -8,7 +8,7 @@ use TautId\Tracker\Events\ConversionCreateEvent;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use TautId\Tracker\Listeners\ConversionCreateListener;
 
-class TrackerServiceProvider extends PackageServiceProvider
+class TautTrackerServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -18,7 +18,7 @@ class TrackerServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('tracker')
+            ->name('taut-tracker')
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_tracker_table');

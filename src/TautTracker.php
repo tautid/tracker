@@ -2,4 +2,4 @@
 
 namespace TautId\Tracker;
 
-class Tracker {}
+class TautTracker {}

@@ -4,7 +4,7 @@ namespace TautId\Tracker\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use TautId\Tracker\TrackerServiceProvider;
+use TautId\Tracker\TautTrackerServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,7 +20,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            TrackerServiceProvider::class,
+            TautTrackerServiceProvider::class,
         ];
     }
 

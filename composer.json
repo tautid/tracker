@@ -65,10 +65,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "TautId\\Tracker\\TrackerServiceProvider"
+                "TautId\\Tracker\\TautTrackerServiceProvider"
             ],
             "aliases": {
-                "Tracker": "TautId\\Tracker\\Facades\\Tracker"
+                "TautTracker": "TautId\\Tracker\\Facades\\TautTracker"
             }
         }
     },
