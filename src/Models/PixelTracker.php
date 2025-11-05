@@ -16,6 +16,6 @@ class PixelTracker extends Model
         'data' => 'array',
         'meta' => 'array',
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        'updated_at' => 'datetime',
     ];
 }

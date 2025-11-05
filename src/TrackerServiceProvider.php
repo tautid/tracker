@@ -4,9 +4,8 @@ namespace Tautid\Tracker;
 
 use Illuminate\Support\Facades\Event;
 use Spatie\LaravelPackageTools\Package;
-use Tautid\Tracker\Commands\TrackerCommand;
-use Tautid\Tracker\Events\ConversionCreateEvent;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Tautid\Tracker\Events\ConversionCreateEvent;
 use Tautid\Tracker\Listeners\ConversionCreateListener;
 
 class TrackerServiceProvider extends PackageServiceProvider
@@ -34,6 +33,6 @@ class TrackerServiceProvider extends PackageServiceProvider
             'database.connections' => array_merge($existing, $mongotrack),
         ]);
 
-        Event::listen(ConversionCreateEvent::class,ConversionCreateListener::class);
+        Event::listen(ConversionCreateEvent::class, ConversionCreateListener::class);
     }
 }

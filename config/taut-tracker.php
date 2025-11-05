@@ -28,7 +28,7 @@ return [
     'connections' => [
         'taut-mongotrack' => [
             'driver' => 'mongodb',
-            'dsn' => env('DB_MONGOTRACK_URI', 'mongodb://localhost:27017'), //MongoDB URI
+            'dsn' => env('DB_MONGOTRACK_URI', 'mongodb://localhost:27017'), // MongoDB URI
             'database' => 'mongotrack',
         ],
     ],

@@ -3,7 +3,6 @@
 namespace Tautid\Tracker\Factories;
 
 use Tautid\Tracker\Abstracts\PixelTrackerAbstract;
-use Tautid\Tracker\Interfaces\PixelTrackerInterface;
 use Tautid\Tracker\Factories\PixelTrackerDrivers\MetaDriver;
 
 class PixelTrackerDriverFactory

@@ -52,6 +52,8 @@ abstract class PixelTrackerAbstract
     }
 
     abstract public function getEvents(): array;
+
     abstract public function validateData(): void;
+
     abstract public function fetch(): void;
 }

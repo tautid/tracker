@@ -2,15 +2,14 @@
 
 namespace Tautid\Tracker\Services;
 
-use Tautid\Tracker\Models\PixelEvent;
-use Spatie\LaravelData\DataCollection;
-use Tautid\Tracker\Traits\FilterServiceTrait;
-use Spatie\LaravelData\PaginatedDataCollection;
 use Illuminate\Database\RecordNotFoundException;
+use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\PaginatedDataCollection;
+use Tautid\Tracker\Data\PixelEvent\CreatePixelEventData;
 use Tautid\Tracker\Data\PixelEvent\PixelEventData;
 use Tautid\Tracker\Data\Utility\FilterPaginationData;
-use Tautid\Tracker\Factories\PixelTrackerDriverFactory;
-use Tautid\Tracker\Data\PixelEvent\CreatePixelEventData;
+use Tautid\Tracker\Models\PixelEvent;
+use Tautid\Tracker\Traits\FilterServiceTrait;
 
 class PixelEventService
 {
@@ -41,8 +40,9 @@ class PixelEventService
     {
         $record = PixelEvent::find($id);
 
-        if(empty($record))
+        if (empty($record)) {
             throw new RecordNotFoundException('Pixel event not found');
+        }
 
         return PixelEventData::from($record);
     }
@@ -66,8 +66,9 @@ class PixelEventService
     {
         $record = PixelEvent::find($id);
 
-        if(empty($record))
+        if (empty($record)) {
             throw new RecordNotFoundException('Pixel event not found');
+        }
 
         $record->delete();
     }

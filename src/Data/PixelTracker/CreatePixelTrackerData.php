@@ -11,8 +11,5 @@ class CreatePixelTrackerData extends Data
         public string $pixel_id,
         public Request $request,
         public ?array $data
-    )
-    {
-
-    }
+    ) {}
 }

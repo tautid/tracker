@@ -4,8 +4,8 @@ namespace Tautid\Tracker\Data\PixelTracker;
 
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
-use Tautid\Tracker\Models\PixelTracker;
 use Tautid\Tracker\Data\PixelEvent\PixelEventData;
+use Tautid\Tracker\Models\PixelTracker;
 
 class PixelTrackerData extends Data
 {
@@ -21,10 +21,7 @@ class PixelTrackerData extends Data
         public ?array $meta,
         public Carbon $created_at,
         public Carbon $updated_at
-    )
-    {
-
-    }
+    ) {}
 
     public static function fromModel(PixelTracker $record): self
     {
