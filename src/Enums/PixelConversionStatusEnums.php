@@ -1,6 +1,6 @@
 <?php
 
-namespace Tautid\Tracker\Enums;
+namespace TautId\Tracker\Enums;
 
 enum PixelConversionStatusEnums: string
 {

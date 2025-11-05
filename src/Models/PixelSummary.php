@@ -1,6 +1,6 @@
 <?php
 
-namespace Tautid\Tracker\Models;
+namespace TautId\Tracker\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
 

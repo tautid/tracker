@@ -1,12 +1,12 @@
 <?php
 
-namespace Tautid\Tracker\Events;
+namespace TautId\Tracker\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Tautid\Tracker\Data\PixelTracker\PixelTrackerData;
+use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
 
 class ConversionCreateEvent
 {

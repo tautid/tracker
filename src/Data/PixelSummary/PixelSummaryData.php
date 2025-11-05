@@ -1,10 +1,10 @@
 <?php
 
-namespace Tautid\Tracker\Data\PixelSummary;
+namespace TautId\Tracker\Data\PixelSummary;
 
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
-use Tautid\Tracker\Models\PixelSummary;
+use TautId\Tracker\Models\PixelSummary;
 
 class PixelSummaryData extends Data
 {

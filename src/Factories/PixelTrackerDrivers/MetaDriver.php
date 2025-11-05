@@ -1,9 +1,9 @@
 <?php
 
-namespace Tautid\Tracker\Factories\PixelTrackerDrivers;
+namespace TautId\Tracker\Factories\PixelTrackerDrivers;
 
 use Illuminate\Support\Facades\Http;
-use Tautid\Tracker\Abstracts\PixelTrackerAbstract;
+use TautId\Tracker\Abstracts\PixelTrackerAbstract;
 
 class MetaDriver extends PixelTrackerAbstract
 {

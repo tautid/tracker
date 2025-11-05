@@ -1,6 +1,6 @@
 <?php
 
-namespace Tautid\Tracker\Data\Utility;
+namespace TautId\Tracker\Data\Utility;
 
 use Spatie\LaravelData\Data;
 

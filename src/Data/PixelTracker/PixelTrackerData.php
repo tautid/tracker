@@ -1,11 +1,11 @@
 <?php
 
-namespace Tautid\Tracker\Data\PixelTracker;
+namespace TautId\Tracker\Data\PixelTracker;
 
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
-use Tautid\Tracker\Models\PixelTracker;
-use Tautid\Tracker\Data\PixelEvent\PixelEventData;
+use TautId\Tracker\Models\PixelTracker;
+use TautId\Tracker\Data\PixelEvent\PixelEventData;
 
 class PixelTrackerData extends Data
 {

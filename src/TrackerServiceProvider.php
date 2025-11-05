@@ -1,13 +1,13 @@
 <?php
 
-namespace Tautid\Tracker;
+namespace TautId\Tracker;
 
 use Illuminate\Support\Facades\Event;
 use Spatie\LaravelPackageTools\Package;
-use Tautid\Tracker\Commands\TrackerCommand;
-use Tautid\Tracker\Events\ConversionCreateEvent;
+use TautId\Tracker\Commands\TrackerCommand;
+use TautId\Tracker\Events\ConversionCreateEvent;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Tautid\Tracker\Listeners\ConversionCreateListener;
+use TautId\Tracker\Listeners\ConversionCreateListener;
 
 class TrackerServiceProvider extends PackageServiceProvider
 {

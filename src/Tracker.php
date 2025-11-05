@@ -1,5 +1,5 @@
 <?php
 
-namespace Tautid\Tracker;
+namespace TautId\Tracker;
 
 class Tracker {}

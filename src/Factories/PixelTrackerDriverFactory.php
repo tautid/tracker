@@ -1,10 +1,10 @@
 <?php
 
-namespace Tautid\Tracker\Factories;
+namespace TautId\Tracker\Factories;
 
-use Tautid\Tracker\Abstracts\PixelTrackerAbstract;
-use Tautid\Tracker\Interfaces\PixelTrackerInterface;
-use Tautid\Tracker\Factories\PixelTrackerDrivers\MetaDriver;
+use TautId\Tracker\Abstracts\PixelTrackerAbstract;
+use TautId\Tracker\Interfaces\PixelTrackerInterface;
+use TautId\Tracker\Factories\PixelTrackerDrivers\MetaDriver;
 
 class PixelTrackerDriverFactory
 {

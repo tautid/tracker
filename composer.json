@@ -37,13 +37,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Tautid\\Tracker\\": "src/",
-            "Tautid\\Tracker\\Database\\Factories\\": "database/factories/"
+            "TautId\\Tracker\\": "src/",
+            "TautId\\Tracker\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tautid\\Tracker\\Tests\\": "tests/",
+            "TautId\\Tracker\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -65,10 +65,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tautid\\Tracker\\TrackerServiceProvider"
+                "TautId\\Tracker\\TrackerServiceProvider"
             ],
             "aliases": {
-                "Tracker": "Tautid\\Tracker\\Facades\\Tracker"
+                "Tracker": "TautId\\Tracker\\Facades\\Tracker"
             }
         }
     },

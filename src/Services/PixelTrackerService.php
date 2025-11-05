@@ -1,13 +1,13 @@
 <?php
 
-namespace Tautid\Tracker\Services;
+namespace TautId\Tracker\Services;
 
-use Tautid\Tracker\Models\PixelTracker;
-use Tautid\Tracker\Events\ConversionCreateEvent;
-use Tautid\Tracker\Enums\PixelConversionStatusEnums;
-use Tautid\Tracker\Data\PixelTracker\PixelTrackerData;
-use Tautid\Tracker\Factories\PixelTrackerDriverFactory;
-use Tautid\Tracker\Data\PixelTracker\CreatePixelTrackerData;
+use TautId\Tracker\Models\PixelTracker;
+use TautId\Tracker\Events\ConversionCreateEvent;
+use TautId\Tracker\Enums\PixelConversionStatusEnums;
+use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
+use TautId\Tracker\Factories\PixelTrackerDriverFactory;
+use TautId\Tracker\Data\PixelTracker\CreatePixelTrackerData;
 
 class PixelTrackerService
 {

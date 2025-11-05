@@ -1,6 +1,6 @@
 <?php
 
-namespace Tautid\Tracker\Data\PixelTracker;
+namespace TautId\Tracker\Data\PixelTracker;
 
 use Illuminate\Http\Request;
 use Spatie\LaravelData\Data;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Tautid\Tracker\Abstracts;
+namespace TautId\Tracker\Abstracts;
 
-use Tautid\Tracker\Data\PixelEvent\PixelEventData;
-use Tautid\Tracker\Data\PixelTracker\PixelTrackerData;
+use TautId\Tracker\Data\PixelEvent\PixelEventData;
+use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
 
 abstract class PixelTrackerAbstract
 {

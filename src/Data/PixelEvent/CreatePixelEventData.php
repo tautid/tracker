@@ -1,6 +1,6 @@
 <?php
 
-namespace Tautid\Tracker\Data\PixelEvent;
+namespace TautId\Tracker\Data\PixelEvent;
 
 use Spatie\LaravelData\Data;
 use Illuminate\Database\Eloquent\Model;

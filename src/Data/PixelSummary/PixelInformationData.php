@@ -1,6 +1,6 @@
 <?php
 
-namespace Tautid\Tracker\Data\PixelSummary;
+namespace TautId\Tracker\Data\PixelSummary;
 
 use Spatie\LaravelData\Data;
 

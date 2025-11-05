@@ -1,10 +1,10 @@
 <?php
 
-namespace Tautid\Tracker\Traits;
+namespace TautId\Tracker\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use InvalidArgumentException;
-use Tautid\Tracker\Data\Utility\FilterPaginationData;
+use TautId\Tracker\Data\Utility\FilterPaginationData;
 
 trait FilterServiceTrait
 {

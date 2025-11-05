@@ -52,7 +52,7 @@ php artisan vendor:publish --tag="tracker-views"
 ## Usage
 
 ```php
-$tracker = new Tautid\Tracker();
+$tracker = new TautId\Tracker();
 echo $tracker->echoPhrase('Hello, Tautid!');
 ```
 

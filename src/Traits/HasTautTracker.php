@@ -1,8 +1,8 @@
 <?php
 
-namespace Tautid\Tracker\Traits;
+namespace TautId\Tracker\Traits;
 
-use Tautid\Tracker\Models\PixelEvent;
+use TautId\Tracker\Models\PixelEvent;
 use Illuminate\Support\Collection;
 
 trait HasTautTracker

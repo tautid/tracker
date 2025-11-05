@@ -1,10 +1,10 @@
 <?php
 
-namespace Tautid\Tracker\Tests;
+namespace TautId\Tracker\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Tautid\Tracker\TrackerServiceProvider;
+use TautId\Tracker\TrackerServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Tautid\\Tracker\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'TautId\\Tracker\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

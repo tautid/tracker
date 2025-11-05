@@ -1,16 +1,16 @@
 <?php
 
-namespace Tautid\Tracker\Facades;
+namespace TautId\Tracker\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Tautid\Tracker\Tracker
+ * @see \TautId\Tracker\Tracker
  */
 class Tracker extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Tautid\Tracker\Tracker::class;
+        return \TautId\Tracker\Tracker::class;
     }
 }
