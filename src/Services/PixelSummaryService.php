@@ -2,14 +2,11 @@
 
 namespace TautId\Tracker\Services;
 
-use Carbon\Carbon;
 use Spatie\LaravelData\DataCollection;
-use TautId\Tracker\Models\PixelSummary;
-use TautId\Tracker\Models\PixelTracker;
-use TautId\Tracker\Enums\PixelConversionStatusEnums;
+use TautId\Tracker\Data\PixelSummary\CreatePixelSummaryData;
 use TautId\Tracker\Data\PixelSummary\PixelSummaryData;
 use TautId\Tracker\Factories\PixelTrackerDriverFactory;
-use TautId\Tracker\Data\PixelSummary\CreatePixelSummaryData;
+use TautId\Tracker\Models\PixelSummary;
 
 class PixelSummaryService
 {
@@ -26,13 +23,13 @@ class PixelSummaryService
     public function createPixelSummary(CreatePixelSummaryData $data): PixelSummaryData
     {
         $record = PixelSummary::create([
-                    'pixel' => $data->pixel,
-                    'fetch_success' => $data->fetch_success,
-                    'fetch_failed' => $data->fetch_failed,
-                    'fetch_duplicated' => $data->fetch_duplicated,
-                    'date' => $data->date,
-                    'meta' => $data->meta
-                ]);
+            'pixel' => $data->pixel,
+            'fetch_success' => $data->fetch_success,
+            'fetch_failed' => $data->fetch_failed,
+            'fetch_duplicated' => $data->fetch_duplicated,
+            'date' => $data->date,
+            'meta' => $data->meta,
+        ]);
 
         return PixelSummaryData::from($record);
     }
@@ -41,12 +38,10 @@ class PixelSummaryService
     {
         $pixel_events = app(PixelEventService::class)->getAllPixelEvents();
 
-        foreach($pixel_events as $pixel) {
+        foreach ($pixel_events as $pixel) {
             PixelTrackerDriverFactory::getDriver($pixel->driver)
-                                        ->setPixel($pixel)
-                                        ->createSummary();
+                ->setPixel($pixel)
+                ->createSummary();
         }
     }
-
-
 }

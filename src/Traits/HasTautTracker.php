@@ -16,14 +16,14 @@ trait HasTautTracker
         $escapedClassName = addslashes($className);
         $referenceId = $this->getKey();
 
-        return PixelEvent::where(function($query) use ($className, $escapedClassName) {
+        return PixelEvent::where(function ($query) use ($className, $escapedClassName) {
             $query->where('reference_type', $className)
-                  ->orWhere('reference_type', $escapedClassName);
+                ->orWhere('reference_type', $escapedClassName);
         })
-        ->where(function($query) use ($referenceId) {
-            $query->where('reference_id', $referenceId)
-                  ->orWhere('reference_id', (string) $referenceId);
-        })
-        ->get();
+            ->where(function ($query) use ($referenceId) {
+                $query->where('reference_id', $referenceId)
+                    ->orWhere('reference_id', (string) $referenceId);
+            })
+            ->get();
     }
 }
