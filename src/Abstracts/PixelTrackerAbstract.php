@@ -31,7 +31,7 @@ abstract class PixelTrackerAbstract
     {
         $this->pixel = $conversion->pixel;
         $this->conversion = $conversion;
-        $this->data = $conversion->data;
+        $this->data = $conversion->data ?? [];
 
         return $this;
     }
@@ -52,4 +52,6 @@ abstract class PixelTrackerAbstract
     abstract public function validateData(): void;
 
     abstract public function fetch(): void;
+
+    abstract public function createSummary(): void;
 }

@@ -10,7 +10,7 @@ use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
 
 class ConversionCreateEvent
 {
-    use Dispatchable, InteractsWithSockets, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public function __construct(
         public PixelTrackerData $data

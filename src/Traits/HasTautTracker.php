@@ -7,10 +7,23 @@ use TautId\Tracker\Models\PixelEvent;
 
 trait HasTautTracker
 {
-    public function pixelEvents(): Collection
+    /**
+     * Get pixel events for this model
+     */
+    public function getPixelEventsAttribute(): Collection
     {
-        return PixelEvent::where('reference_type', static::class)
-            ->where('reference_id', $this->getKey())
-            ->get();
+        $className = static::class;
+        $escapedClassName = addslashes($className);
+        $referenceId = $this->getKey();
+
+        return PixelEvent::where(function($query) use ($className, $escapedClassName) {
+            $query->where('reference_type', $className)
+                  ->orWhere('reference_type', $escapedClassName);
+        })
+        ->where(function($query) use ($referenceId) {
+            $query->where('reference_id', $referenceId)
+                  ->orWhere('reference_id', (string) $referenceId);
+        })
+        ->get();
     }
 }

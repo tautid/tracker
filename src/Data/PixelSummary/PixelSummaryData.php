@@ -13,7 +13,9 @@ class PixelSummaryData extends Data
         public PixelInformationData $pixel,
         public int $fetch_success,
         public int $fetch_failed,
+        public int $fetch_duplicated,
         public int $total,
+        public ?array $meta,
         public Carbon $date,
         public Carbon $created_at,
         public Carbon $updated_at
@@ -26,7 +28,9 @@ class PixelSummaryData extends Data
             pixel: $record->pixel,
             fetch_success: $record->fetch_success,
             fetch_failed: $record->fetch_failed,
+            fetch_duplicated: $record->fetch_duplicated,
             total: $record->total,
+            meta: $record->meta,
             date: $record->date,
             created_at: $record->created_at,
             updated_at: $record->updated_at

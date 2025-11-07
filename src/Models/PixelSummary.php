@@ -13,6 +13,9 @@ class PixelSummary extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'pixel' => 'array',
+        'meta' => 'array',
+        'date' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
