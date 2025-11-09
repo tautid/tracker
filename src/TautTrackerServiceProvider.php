@@ -4,9 +4,10 @@ namespace TautId\Tracker;
 
 use Illuminate\Support\Facades\Event;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use TautId\Tracker\Events\ConversionCreateEvent;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 use TautId\Tracker\Listeners\ConversionCreateListener;
+use TautId\Tracker\Commands\CreateConversionSummaryCommand;
 
 class TautTrackerServiceProvider extends PackageServiceProvider
 {
@@ -20,6 +21,9 @@ class TautTrackerServiceProvider extends PackageServiceProvider
         $package
             ->name('taut-tracker')
             ->hasConfigFile()
+            ->hasCommands([
+                CreateConversionSummaryCommand::class
+            ])
             ->hasViews();
     }
 

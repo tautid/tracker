@@ -25,9 +25,14 @@ class PixelTrackerData extends Data
 
     public static function fromModel(PixelTracker $record): self
     {
+        $pixelData = is_array($record->pixel) ? $record->pixel : $record->pixel->toArray();
+
+        // Convert MongoDB ObjectIds to strings
+        $pixelData = self::convertObjectIdsToStrings($pixelData);
+
         return new self(
             id: $record->id,
-            pixel: PixelEventData::from($record->pixel->toArray()),
+            pixel: PixelEventData::from($pixelData),
             status: $record->status,
             is_saved: $record->is_saved,
             data: $record->data,
@@ -38,5 +43,27 @@ class PixelTrackerData extends Data
             created_at: $record->created_at,
             updated_at: $record->updated_at
         );
+    }
+
+    private static function convertObjectIdsToStrings(array $data): array
+    {
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                // Handle MongoDB ObjectId format
+                if (isset($value['$oid'])) {
+                    $data[$key] = (string) $value['$oid'];
+                }
+                // Handle empty arrays for date fields
+                elseif (in_array($key, ['created_at', 'updated_at']) && empty($value)) {
+                    $data[$key] = now(); // Use current timestamp as fallback
+                }
+                else {
+                    // Recursively process nested arrays
+                    $data[$key] = self::convertObjectIdsToStrings($value);
+                }
+            }
+        }
+
+        return $data;
     }
 }

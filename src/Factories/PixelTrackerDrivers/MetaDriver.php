@@ -207,14 +207,16 @@ class MetaDriver extends PixelTrackerAbstract
         }
     }
 
-    public function createSummary(): void
+    public function createSummary(?Carbon $date): void
     {
-        $this->validateRequiredData();
+        if ($this->pixel === null) {
+            throw new \InvalidArgumentException('Pixel must be set before fetching.');
+        }
 
         $conversion_groups = app(PixelTrackerService::class)
-                    ->getUnsavedConversionByPixelEvent($this->pixel->id);
+                    ->getUnsavedConversionByPixelEvent($this->pixel->id, $date ?? now());
 
-        foreach($conversion_groups as $date => $group)
+        foreach($conversion_groups->items() as $date => $group)
         {
             try{
                 $meta = match($this->pixel->event){
@@ -236,10 +238,13 @@ class MetaDriver extends PixelTrackerAbstract
                     'meta' => $meta
                 ]);
 
+                $ids = collect($group)->pluck('id')->toArray();
+
                 app(PixelSummaryService::class)->createPixelSummary($data);
+                app(PixelTrackerService::class)->saveConversions($ids);
             }catch(\Exception $e)
             {
-
+                //
             }
         }
     }

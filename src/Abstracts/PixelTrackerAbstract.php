@@ -2,6 +2,7 @@
 
 namespace TautId\Tracker\Abstracts;
 
+use Carbon\Carbon;
 use TautId\Tracker\Data\PixelEvent\PixelEventData;
 use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
 
@@ -53,5 +54,5 @@ abstract class PixelTrackerAbstract
 
     abstract public function fetch(): void;
 
-    abstract public function createSummary(): void;
+    abstract public function createSummary(?Carbon $date): void;
 }

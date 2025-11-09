@@ -2,7 +2,7 @@
 
 namespace TautId\Tracker\Services;
 
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Spatie\LaravelData\DataCollection;
 use TautId\Tracker\Models\PixelTracker;
 use Illuminate\Database\RecordNotFoundException;
@@ -14,23 +14,34 @@ use TautId\Tracker\Data\PixelTracker\CreatePixelTrackerData;
 
 class PixelTrackerService
 {
-    public function getUnsavedConversionByPixelEvent(string $event_id): DataCollection
+    public function getUnsavedConversionByPixelEvent(string $event_id, Carbon $date): DataCollection
     {
-        $records = PixelTracker::where('is_saved', false)
-                                ->whereNot('status', PixelConversionStatusEnums::Queued->value)
-                                ->where('pixel.id', $event_id)
+        $ids = PixelTracker::raw(function ($collection) use ($event_id, $date) {
+            return $collection->find([
+                'is_saved' => false,
+                'status' => ['$ne' => PixelConversionStatusEnums::Queued->value],
+                'pixel.id' => $event_id,
+            ], [
+                'projection' => ['_id' => 1]
+            ])->toArray();
+        });
+
+        $idList = collect($ids)->map(function($item) {
+            return is_array($item['_id']) ? $item['_id']['$oid'] : (string) $item['_id'];
+        })->toArray();
+
+        $records = PixelTracker::whereIn('_id', $idList)
+                                ->where('created_at', '<', $date)
                                 ->orderBy('created_at')
                                 ->get()
                                 ->groupBy(function ($item) {
                                     return $item->created_at->format('Y-m-d');
                                 })
-                                ->flatten()
-                                ->map(fn($conversions) => new DataCollection(
-                                    PixelTrackerData::class,
-                                    collect([$conversions])->map(fn($record) => PixelTrackerData::from($record))
-                                ));
+                                ->map(function ($groupedRecords) {
+                                    return new DataCollection(PixelTrackerData::class, $groupedRecords->map(fn($record) => PixelTrackerData::from($record)));
+                                });
 
-        return new DataCollection(PixelTrackerData::class, $records);
+        return new DataCollection(DataCollection::class,$records);
     }
 
     public function createConversion(CreatePixelTrackerData $data): PixelTrackerData
@@ -71,6 +82,11 @@ class PixelTrackerService
             'fbp' => $data->request->cookie('_fbp'),
             'fbc' => $data->request->cookie('_fbc'),
         ];
+    }
+
+    public function saveConversions(array $ids): void
+    {
+        PixelTracker::whereIn('_id',$ids)->update(['is_saved' => true]);
     }
 
     public function changeStatusToSuccess(string $id): void
@@ -117,4 +133,6 @@ class PixelTrackerService
             'status' => PixelConversionStatusEnums::Duplicate->value
         ]);
     }
+
+
 }

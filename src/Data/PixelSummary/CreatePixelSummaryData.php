@@ -13,7 +13,6 @@ class CreatePixelSummaryData extends Data
         public int $fetch_success,
         public int $fetch_failed,
         public int $fetch_duplicated,
-        public int $total,
         public ?array $meta,
         public Carbon $date,
     )

@@ -23,30 +23,27 @@ class PixelSummaryService
         );
     }
 
-    public function createPixelSummary(CreatePixelSummaryData $data): PixelSummaryData
+    public function createPixelSummary(CreatePixelSummaryData $data): void
     {
-        $record = PixelSummary::create([
+        PixelSummary::create([
                     'pixel' => $data->pixel,
                     'fetch_success' => $data->fetch_success,
                     'fetch_failed' => $data->fetch_failed,
                     'fetch_duplicated' => $data->fetch_duplicated,
+                    'total' => $data->fetch_success + $data->fetch_failed + $data->fetch_duplicated,
                     'date' => $data->date,
                     'meta' => $data->meta
                 ]);
-
-        return PixelSummaryData::from($record);
     }
 
-    public function createPixelSummaryFromUnsavedConversion(): void
+    public function createPixelSummaryFromUnsavedConversion(?Carbon $date = null): void
     {
         $pixel_events = app(PixelEventService::class)->getAllPixelEvents();
 
         foreach($pixel_events as $pixel) {
             PixelTrackerDriverFactory::getDriver($pixel->driver)
                                         ->setPixel($pixel)
-                                        ->createSummary();
+                                        ->createSummary($date);
         }
     }
-
-
 }
