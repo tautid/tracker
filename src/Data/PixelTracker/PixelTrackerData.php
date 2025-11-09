@@ -56,8 +56,7 @@ class PixelTrackerData extends Data
                 // Handle empty arrays for date fields
                 elseif (in_array($key, ['created_at', 'updated_at']) && empty($value)) {
                     $data[$key] = now(); // Use current timestamp as fallback
-                }
-                else {
+                } else {
                     // Recursively process nested arrays
                     $data[$key] = self::convertObjectIdsToStrings($value);
                 }

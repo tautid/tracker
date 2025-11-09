@@ -16,32 +16,32 @@ class PixelTrackerService
 {
     public function getUnsavedConversionByPixelEvent(string $event_id, Carbon $date): DataCollection
     {
-        $ids = PixelTracker::raw(function ($collection) use ($event_id, $date) {
+        $ids = PixelTracker::raw(function ($collection) use ($event_id) {
             return $collection->find([
                 'is_saved' => false,
                 'status' => ['$ne' => PixelConversionStatusEnums::Queued->value],
                 'pixel.id' => $event_id,
             ], [
-                'projection' => ['_id' => 1]
+                'projection' => ['_id' => 1],
             ])->toArray();
         });
 
-        $idList = collect($ids)->map(function($item) {
+        $idList = collect($ids)->map(function ($item) {
             return is_array($item['_id']) ? $item['_id']['$oid'] : (string) $item['_id'];
         })->toArray();
 
         $records = PixelTracker::whereIn('_id', $idList)
-                                ->where('created_at', '<', $date)
-                                ->orderBy('created_at')
-                                ->get()
-                                ->groupBy(function ($item) {
-                                    return $item->created_at->format('Y-m-d');
-                                })
-                                ->map(function ($groupedRecords) {
-                                    return new DataCollection(PixelTrackerData::class, $groupedRecords->map(fn($record) => PixelTrackerData::from($record)));
-                                });
+            ->where('created_at', '<', $date)
+            ->orderBy('created_at')
+            ->get()
+            ->groupBy(function ($item) {
+                return $item->created_at->format('Y-m-d');
+            })
+            ->map(function ($groupedRecords) {
+                return new DataCollection(PixelTrackerData::class, $groupedRecords->map(fn ($record) => PixelTrackerData::from($record)));
+            });
 
-        return new DataCollection(DataCollection::class,$records);
+        return new DataCollection(DataCollection::class, $records);
     }
 
     public function createConversion(CreatePixelTrackerData $data): PixelTrackerData
@@ -86,7 +86,7 @@ class PixelTrackerService
 
     public function saveConversions(array $ids): void
     {
-        PixelTracker::whereIn('_id',$ids)->update(['is_saved' => true]);
+        PixelTracker::whereIn('_id', $ids)->update(['is_saved' => true]);
     }
 
     public function changeStatusToSuccess(string $id): void
@@ -139,6 +139,4 @@ class PixelTrackerService
             'status' => PixelConversionStatusEnums::Duplicate->value,
         ]);
     }
-
-
 }
