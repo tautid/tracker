@@ -3,15 +3,14 @@
 namespace TautId\Tracker\Factories\PixelTrackerDrivers;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use TautId\Tracker\Abstracts\PixelTrackerAbstract;
+use TautId\Tracker\Data\PixelSummary\CreatePixelSummaryData;
+use TautId\Tracker\Data\PixelSummary\PixelInformationData;
+use TautId\Tracker\Enums\PixelConversionStatusEnums;
 use TautId\Tracker\Services\PixelSummaryService;
 use TautId\Tracker\Services\PixelTrackerService;
-use TautId\Tracker\Abstracts\PixelTrackerAbstract;
-use TautId\Tracker\Data\PixelEvent\PixelEventData;
-use TautId\Tracker\Enums\PixelConversionStatusEnums;
-use TautId\Tracker\Data\PixelSummary\PixelInformationData;
-use TautId\Tracker\Data\PixelSummary\CreatePixelSummaryData;
 
 class MetaDriver extends PixelTrackerAbstract
 {
@@ -72,11 +71,11 @@ class MetaDriver extends PixelTrackerAbstract
 
     private function validatePurchaseData(): void
     {
-        if (!data_get($this->data, 'currency')) {
+        if (! data_get($this->data, 'currency')) {
             throw new \InvalidArgumentException('currency is required for purchase event');
         }
 
-        if (!data_get($this->data, 'value')) {
+        if (! data_get($this->data, 'value')) {
             throw new \InvalidArgumentException('value is required for purchase event');
         }
 
@@ -87,15 +86,15 @@ class MetaDriver extends PixelTrackerAbstract
 
     private function validateStartTrialData(): void
     {
-        if (!data_get($this->data, 'currency')) {
+        if (! data_get($this->data, 'currency')) {
             throw new \InvalidArgumentException('currency is required for start trial event');
         }
 
-        if (!data_get($this->data, 'value')) {
+        if (! data_get($this->data, 'value')) {
             throw new \InvalidArgumentException('value is required for start trial event');
         }
 
-        if (!data_get($this->data, 'predicted_ltv')) {
+        if (! data_get($this->data, 'predicted_ltv')) {
             throw new \InvalidArgumentException('predicted_ltv is required for start trial event');
         }
 
@@ -110,15 +109,15 @@ class MetaDriver extends PixelTrackerAbstract
 
     private function validateSubscribeData(): void
     {
-        if (!data_get($this->data, 'currency')) {
+        if (! data_get($this->data, 'currency')) {
             throw new \InvalidArgumentException('currency is required for subscribe event');
         }
 
-        if (!data_get($this->data, 'value')) {
+        if (! data_get($this->data, 'value')) {
             throw new \InvalidArgumentException('value is required for subscribe event');
         }
 
-        if (!data_get($this->data, 'predicted_ltv')) {
+        if (! data_get($this->data, 'predicted_ltv')) {
             throw new \InvalidArgumentException('predicted_ltv is required for subscribe event');
         }
 
@@ -158,7 +157,7 @@ class MetaDriver extends PixelTrackerAbstract
                             'custom_data' => $this->data,
                             'event_source_url' => $this->conversion->source_url,
                             'action_source' => 'website',
-                        ]
+                        ],
                     ],
                     'access_token' => $this->pixel->token,
                 ];
@@ -170,6 +169,7 @@ class MetaDriver extends PixelTrackerAbstract
 
                 if ($response->successful()) {
                     app(PixelTrackerService::class)->changeStatusToSuccess($this->conversion->id);
+
                     return;
                 }
 
@@ -192,9 +192,9 @@ class MetaDriver extends PixelTrackerAbstract
 
                 if ($attempt === $maxRetries) {
                     app(PixelTrackerService::class)->changeStatusToFailed($this->conversion->id);
-                    Log::error("Meta pixel tracking failed", [
+                    Log::error('Meta pixel tracking failed', [
                         'error' => $e->getMessage(),
-                        'event' => $this->pixel->event
+                        'event' => $this->pixel->event,
                     ]);
 
                     break;
@@ -229,13 +229,13 @@ class MetaDriver extends PixelTrackerAbstract
                 $data = CreatePixelSummaryData::from([
                     'pixel' => PixelInformationData::from([
                         'id' => $this->pixel->id,
-                        'name' => $this->pixel->name
+                        'name' => $this->pixel->name,
                     ]),
-                    'fetch_success' => $group->where('status',PixelConversionStatusEnums::Success->value)->count(),
-                    'fetch_failed' => $group->where('status',PixelConversionStatusEnums::Failed->value)->count(),
-                    'fetch_duplicated' => $group->where('status',PixelConversionStatusEnums::Duplicate->value)->count(),
+                    'fetch_success' => $group->where('status', PixelConversionStatusEnums::Success->value)->count(),
+                    'fetch_failed' => $group->where('status', PixelConversionStatusEnums::Failed->value)->count(),
+                    'fetch_duplicated' => $group->where('status', PixelConversionStatusEnums::Duplicate->value)->count(),
                     'date' => Carbon::parse($date),
-                    'meta' => $meta
+                    'meta' => $meta,
                 ]);
 
                 $ids = collect($group)->pluck('id')->toArray();

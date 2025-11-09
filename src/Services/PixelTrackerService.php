@@ -3,14 +3,14 @@
 namespace TautId\Tracker\Services;
 
 use Carbon\Carbon;
-use Spatie\LaravelData\DataCollection;
-use TautId\Tracker\Models\PixelTracker;
 use Illuminate\Database\RecordNotFoundException;
-use TautId\Tracker\Events\ConversionCreateEvent;
-use TautId\Tracker\Enums\PixelConversionStatusEnums;
-use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
-use TautId\Tracker\Factories\PixelTrackerDriverFactory;
+use Spatie\LaravelData\DataCollection;
 use TautId\Tracker\Data\PixelTracker\CreatePixelTrackerData;
+use TautId\Tracker\Data\PixelTracker\PixelTrackerData;
+use TautId\Tracker\Enums\PixelConversionStatusEnums;
+use TautId\Tracker\Events\ConversionCreateEvent;
+use TautId\Tracker\Factories\PixelTrackerDriverFactory;
+use TautId\Tracker\Models\PixelTracker;
 
 class PixelTrackerService
 {
@@ -93,14 +93,16 @@ class PixelTrackerService
     {
         $record = PixelTracker::find($id);
 
-        if(empty($record))
+        if (empty($record)) {
             throw new RecordNotFoundException('Tracker / Conversion is not found');
+        }
 
-        if($record->status != PixelConversionStatusEnums::Queued->value)
+        if ($record->status != PixelConversionStatusEnums::Queued->value) {
             throw new \InvalidArgumentException('Current status of tracker is not queued');
+        }
 
         $record->update([
-            'status' => PixelConversionStatusEnums::Success->value
+            'status' => PixelConversionStatusEnums::Success->value,
         ]);
     }
 
@@ -108,14 +110,16 @@ class PixelTrackerService
     {
         $record = PixelTracker::find($id);
 
-        if(empty($record))
+        if (empty($record)) {
             throw new RecordNotFoundException('Tracker / Conversion is not found');
+        }
 
-        if($record->status != PixelConversionStatusEnums::Queued->value)
+        if ($record->status != PixelConversionStatusEnums::Queued->value) {
             throw new \InvalidArgumentException('Current status of tracker is not queued');
+        }
 
         $record->update([
-            'status' => PixelConversionStatusEnums::Failed->value
+            'status' => PixelConversionStatusEnums::Failed->value,
         ]);
     }
 
@@ -123,14 +127,16 @@ class PixelTrackerService
     {
         $record = PixelTracker::find($id);
 
-        if(empty($record))
+        if (empty($record)) {
             throw new RecordNotFoundException('Tracker / Conversion is not found');
+        }
 
-        if($record->status != PixelConversionStatusEnums::Queued->value)
+        if ($record->status != PixelConversionStatusEnums::Queued->value) {
             throw new \InvalidArgumentException('Current status of tracker is not queued');
+        }
 
         $record->update([
-            'status' => PixelConversionStatusEnums::Duplicate->value
+            'status' => PixelConversionStatusEnums::Duplicate->value,
         ]);
     }
 
