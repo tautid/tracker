@@ -25,6 +25,7 @@ class CreateConversionSummaryCommand extends Command
                 $this->info("Filtering conversions created before: {$date->format('Y-m-d H:i:s')}");
             } catch (\Exception $e) {
                 $this->error('❌ Invalid date format. Please use Y-m-d or Y-m-d H:i:s format.');
+
                 return Command::FAILURE;
             }
         }
@@ -34,7 +35,8 @@ class CreateConversionSummaryCommand extends Command
 
             $this->info('✅ Conversion summary created successfully!');
         } catch (\Exception $e) {
-            $this->error('❌ Error creating conversion summary: ' . $e->getMessage());
+            $this->error('❌ Error creating conversion summary: '.$e->getMessage());
+
             return Command::FAILURE;
         }
 

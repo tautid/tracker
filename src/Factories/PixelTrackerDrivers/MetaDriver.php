@@ -214,12 +214,11 @@ class MetaDriver extends PixelTrackerAbstract
         }
 
         $conversion_groups = app(PixelTrackerService::class)
-                    ->getUnsavedConversionByPixelEvent($this->pixel->id, $date ?? now());
+            ->getUnsavedConversionByPixelEvent($this->pixel->id, $date ?? now());
 
-        foreach($conversion_groups->items() as $date => $group)
-        {
-            try{
-                $meta = match($this->pixel->event){
+        foreach ($conversion_groups->items() as $date => $group) {
+            try {
+                $meta = match ($this->pixel->event) {
                     'Purchase' => $group->sum('data.value'),
                     'StartTrial' => $group->sum('data.value'),
                     'Subscribe' => $group->sum('data.value'),
@@ -242,8 +241,7 @@ class MetaDriver extends PixelTrackerAbstract
 
                 app(PixelSummaryService::class)->createPixelSummary($data);
                 app(PixelTrackerService::class)->saveConversions($ids);
-            }catch(\Exception $e)
-            {
+            } catch (\Exception $e) {
                 //
             }
         }
